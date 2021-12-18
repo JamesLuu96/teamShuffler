@@ -2,7 +2,7 @@ import React from 'react'
 import {useState, useRef} from 'react';
 import Whitelist from './Whitelist'
 import Blacklist from './Blacklist'
-import { Box, Button, Text, Input } from '@chakra-ui/react'
+import { Box, Button, Text, Input, Image } from '@chakra-ui/react'
 import {DeleteIcon} from '@chakra-ui/icons'
 
 import './Main.css';
@@ -117,6 +117,9 @@ export default function Main() {
     }
     return (
         <Box width={"80%"} m="20px auto" textAlign={"center"}>
+            <Box position={"absolute"} width={"150px"}>
+                <Image borderRadius='full' src='https://i.imgur.com/7GKlkKp.jpg' alt='Dan Abramov' />
+            </Box>
             {getLength() > 0 && (
                 <Button size="sm" colorScheme={"red"} onClick={e=>{
                     resetAll()
@@ -124,7 +127,7 @@ export default function Main() {
                 }}>Clear All?</Button>
             )}
             <Text fontSize={"2rem"} fontWeight={"bold"} color={"white"}>
-                James' Team Scrambler
+                Team Randomizer
             </Text>
             <Text color="white" m="5px">Number of Teams:</Text>
             <Button m="10px" onClick={()=>{
