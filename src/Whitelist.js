@@ -57,7 +57,7 @@ export default function Whitelist({config}) {
                 <Text color="yellow">Add players you want to stay on the same team:</Text>
                 <ul>
                     {
-                        players.map(player=>(
+                        players.sort((a,b)=>a.name.localeCompare(b.name)).map(player=>(
                             <Box key={player.id} display={"flex"}>
                                 <Text color="white" m="5px">{player.name}</Text>
                                 <Checkbox defaultChecked={player.value} onChange={e=>checkboxHandler(player)}></Checkbox>

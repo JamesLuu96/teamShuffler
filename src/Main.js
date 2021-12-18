@@ -181,7 +181,7 @@ export default function Main() {
                 ))}
             </Box>
             {players.length > 0 && 
-                <Box m="5px" display="flex" justifyContent={"center"} alignItems={"center"}>
+                <Box m="5px" display="flex" justifyContent={"center"} alignItems={"center"} flexWrap={"wrap"}>
                     <Whitelist colorScheme="black" config={{players, setPlayers, addWhitelist, id, setId}}/>
                     <Blacklist config={{players, setPlayers, addBlacklist, id, setId, teamAmount}}/>
                 </Box>
@@ -191,10 +191,10 @@ export default function Main() {
 
 
             <Text color="white" mb="10px" borderBottom={"1px solid white"}>Total Players: <Text fontWeight={"bold"} display="inline-block">{getLength()}</Text></Text>
-            <Box display={"flex"} justifyContent="center" alignItems="center" width={{md:"85%", lg:"80%"}} m="0 auto" flexWrap={"wrap"} mb="20px">
+            <Box display={"flex"} justifyContent="center" alignItems="center" width={{sm:"100%", md:"85%", lg:"80%"}} m="0 auto" flexWrap={"wrap"} mb="20px">
                 {
                     players.map(player=>(
-                        <Box width="200px" key={player.id} display="flex" alignItems={"center"} justifyContent={"center"}>
+                        <Box width={{sm:"100px", md:"100px", lg:"200px"}} key={player.id} display="flex" alignItems={"center"} justifyContent={"space-evenly"} m="15px">
                             <Text color="white" fontWeight={"bold"} m="5px">{player.name}</Text>
                             <Button size="xs" colorScheme={"red"} variant={"outline"} onClick={e=>{
                                 setOutput([])
@@ -212,11 +212,12 @@ export default function Main() {
                 <>
                     <Text fontSize={"2rem"} fontWeight={"bold"} color="white">Your Teams:</Text>
                     <Button leftIcon={<DeleteIcon/>} mb="20px" size="xs" colorScheme={"red"} variant={"outline"} onClick={(e)=>setOutput([])}>Clear Teams</Button>
-                    <Box display={"flex"} justifyContent="space-evenly" width="80%" m="0 auto" mb="300px">
+                    <Box display={"flex"} justifyContent="space-evenly" flexWrap={"wrap"} width="80%" m="0 auto" mb="300px">
                     {
                         output.map((teams, i)=>(
-                            <Box key={i}>
-                                <Text mb="5px" borderBottom="1px solid white" color="white" fontWeight={"bold"}>Team {i + 1} ({teams.length}):</Text>
+                            <Box key={i} m="5px">
+                                <Text color="yellow" fontWeight={"bold"}>Team {i + 1}:</Text>
+                                <Text width={"64px"} pb="5px" mb="5px" borderBottom="1px solid white" color="lightgreen" display={"inline-block"}>({teams.length})</Text>
                                 <Box>
                                     {teams.map((player, i)=>(
                                         <Text color="white" key={i}>{player.name}</Text>

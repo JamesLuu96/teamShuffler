@@ -60,7 +60,7 @@ export default function Blacklist({config}) {
                 <Text color="yellow">Add players you don't want on the same team:</Text>
                 <ul>
                     {
-                        players.map(player=>(
+                        players.sort((a,b)=>a.name.localeCompare(b.name)).map(player=>(
                             <Box key={player.id} display={"flex"}>
                                 <Text color="white" m="5px">{player.name}</Text>
                                 <Checkbox isChecked={player.value} onChange={e=>checkboxHandler(player)}></Checkbox>
