@@ -8,6 +8,7 @@ import {DeleteIcon} from '@chakra-ui/icons'
 import './Main.css';
 
 export default function Main() {
+    const forLinh = ["Chi Huyen", "Robby", "John", "Jackson", "Thomas", "Chi Ngoc", "Anh Quan", "Anh Chuong", "Chi Thu", "Anh Trong", "Chi Linh", "Rau", "Linh", "Tram", "Alex", "James", "Yen", "Jon", "Sang", "Kim", "Bi", "Teo", "Duke(Bobo)", "Thien", "Thy"]
     const [teamAmount, setTeamAmount] = useState(1)
     const [players, setPlayers] = useState([])
     const [playersWhitelist, setPlayersWhitelist] = useState([])
@@ -118,11 +119,18 @@ export default function Main() {
     return (
         <Box width={"80%"} m="20px auto" textAlign={"center"}>
             {getLength() > 0 && (
-                <Button size="sm" colorScheme={"red"} onClick={e=>{
+                <Button m="10px" size="sm" colorScheme={"red"} onClick={e=>{
                     resetAll()
                     setPlayers([])
                 }}>Clear All?</Button>
             )}
+            <Box>
+                <Button size="xs" colorScheme={"blue"} onClick={e=>{
+                    resetAll()
+                    setPlayers(shuffle(forLinh.map((name, i)=>({name, id: i+1000}))))
+                }}>Family Names
+                </Button>
+            </Box>
             <Text fontSize={"2rem"} fontWeight={"bold"} color={"white"}>
                 Team Randomizer
             </Text>
