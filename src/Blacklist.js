@@ -38,6 +38,8 @@ export default function Blacklist({config}) {
         setBlacklist([])
     }
     function addBlacklistHandler(){
+        if(blacklist.length <= 1)
+            return
         addBlacklist({players: blacklist, id: id})
         setId(id + 1)
         setBlacklist([])
@@ -52,10 +54,10 @@ export default function Blacklist({config}) {
         }}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Add Blacklist filter</ModalHeader>
+            <ModalHeader color="white">Add Blacklist filter</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-                <Text>Add players who you don't want to be on the same team:</Text>
+                <Text color="yellow">Add players you don't want on the same team:</Text>
                 <ul>
                     {
                         players.map(player=>(
@@ -79,7 +81,7 @@ export default function Blacklist({config}) {
                     onCloseHandler()
                     onClose(e)
                 }}>
-                Close
+                X
               </Button>
             </ModalFooter>
           </ModalContent>

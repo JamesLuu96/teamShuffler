@@ -35,6 +35,8 @@ export default function Whitelist({config}) {
         setWhitelist([])
     }
     function addWhitelistHandler(){
+        if(whitelist.length <= 1)
+            return
         addWhitelist({players: whitelist, id: id})
         setId(id + 1)
         setWhitelist([])
@@ -49,10 +51,10 @@ export default function Whitelist({config}) {
         }}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Add Whitelist filter</ModalHeader>
+            <ModalHeader color="white">Add Whitelist filter</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-                <Text>Add players who you want to stay on the same team:</Text>
+                <Text color="yellow">Add players you want to stay on the same team:</Text>
                 <ul>
                     {
                         players.map(player=>(
@@ -76,7 +78,7 @@ export default function Whitelist({config}) {
                     onCloseHandler()
                     onClose(e)
                 }}>
-                Close
+                X
               </Button>
             </ModalFooter>
           </ModalContent>

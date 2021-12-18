@@ -1,8 +1,9 @@
 import React from 'react'
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 import Whitelist from './Whitelist'
 import Blacklist from './Blacklist'
 import { Box, Button, Text, Input } from '@chakra-ui/react'
+import {DeleteIcon} from '@chakra-ui/icons'
 
 import './Main.css';
 
@@ -12,6 +13,7 @@ export default function Main() {
     const [playersWhitelist, setPlayersWhitelist] = useState([])
     const [playersBlacklist, setPlayersBlacklist] = useState([])
     const [nameInput, setNameInput] = useState("")
+    const nameSpace = useRef()
     const [id, setId] = useState(0)
     const [output, setOutput] = useState([])
     function deletePlayer(playerId){
@@ -115,6 +117,12 @@ export default function Main() {
     }
     return (
         <Box width={"80%"} m="20px auto" textAlign={"center"}>
+            {getLength() > 0 && (
+                <Button size="sm" colorScheme={"red"} onClick={e=>{
+                    resetAll()
+                    setPlayers([])
+                }}>Clear All?</Button>
+            )}
             <Text fontSize={"2rem"} fontWeight={"bold"} color={"white"}>
                 James' Team Scrambler
             </Text>
@@ -131,7 +139,7 @@ export default function Main() {
             <Text color={"white"} m="5px">Player Name:</Text>
             <Box display="flex" justifyContent={"center"} alignItems={"center"}>
                 <form>
-                    <Input color="white" width="250px" m="5px" value={nameInput} onChange={e=>setNameInput(e.target.value)}></Input>
+                    <Input ref={nameSpace} color="white" width="250px" m="5px" value={nameInput} onChange={e=>setNameInput(e.target.value)}></Input>
                     <Button type="submit" bg={nameInput ? "lightgreen" : "lightgrey"} onClick={e=>{
                         e.preventDefault()
                         if(!nameInput)return
@@ -139,15 +147,16 @@ export default function Main() {
                         setId(id + 1)
                         setNameInput("")
                         setOutput([])
+                        nameSpace.current.focus()
                     }}>Add Player</Button>
                 </form>
             </Box>
             <Box display={"flex"} justifyContent="center" m="0 auto" flexWrap={"wrap"} width="80%">
                 {playersWhitelist.map((playerObjects, i)=>(
-                    <Box key={playerObjects.id} m="15px">
+                    <Box width="150px" key={playerObjects.id} m="15px">
                         <Text color="white">Whitelist {i + 1}: </Text>
-                        <Button size="xs" colorScheme={"red"} variant={"outline"} onClick={e=>deleteWhitelist(playerObjects.id)}>Delete</Button>
-                        {playerObjects.players.map(player=>(<Text color="white" fontWeight={"bold"} key={player.id}>{player.name}</Text>))}
+                        <Button size="xs" colorScheme={"red"} variant={"outline"} onClick={e=>deleteWhitelist(playerObjects.id)}><DeleteIcon/></Button>
+                        {playerObjects.players.map(player=>(<Text bg="rgb(114, 163, 219)" m="3px" p="2px" border="1px solid white" color="white" fontWeight={"bold"} key={player.id}>{player.name}</Text>))}
                     </Box>
                 ))}
             </Box>
@@ -155,8 +164,8 @@ export default function Main() {
                 {playersBlacklist.map((playerObjects, i)=>(
                     <Box key={playerObjects.id} m="15px">
                         <Text color="white">Blacklist {i + 1}: </Text>
-                        <Button size="xs" colorScheme={"red"} variant={"outline"} onClick={e=>deleteBlacklist(playerObjects.id)}>Delete</Button>
-                        {playerObjects.players.map(player=>(<Text color="white" fontWeight={"bold"} key={player.id}>{player.name}</Text>))}
+                        <Button size="xs" colorScheme={"red"} variant={"outline"} onClick={e=>deleteBlacklist(playerObjects.id)}><DeleteIcon/></Button>
+                        {playerObjects.players.map(player=>(<Text bg="rgba(182, 94, 182, 0.822)" m="3px" p="2px" border="1px solid white" color="white" fontWeight={"bold"} key={player.id}>{player.name}</Text>))}
                     </Box>
                 ))}
             </Box>
@@ -191,7 +200,7 @@ export default function Main() {
             {output.length > 0 && (
                 <>
                     <Text fontSize={"2rem"} fontWeight={"bold"} color="white">Your Teams:</Text>
-                    <Button mb="20px" size="xs" colorScheme={"red"} variant={"outline"} onClick={(e)=>setOutput([])}>Clear Teams</Button>
+                    <Button leftIcon={<DeleteIcon/>} mb="20px" size="xs" colorScheme={"red"} variant={"outline"} onClick={(e)=>setOutput([])}>Clear Teams</Button>
                     <Box display={"flex"} justifyContent="space-evenly" width="80%" m="0 auto" mb="300px">
                     {
                         output.map((teams, i)=>(
