@@ -52,9 +52,18 @@ export default function Main() {
         setOutput([])
     }
     function randomizeTeam(){
-        const teams = new Array(teamAmount).fill().map(()=>[])
+        let teams = new Array(teamAmount).fill().map(()=>[])
+        
+        shuffle(playersWhitelist).forEach(whitelist=>{
+            teams = teams.sort((a,b)=>a.length - b.length)
+            for(let i = 0; i < whitelist.players.length; i++){
+                teams[0].push(whitelist.players[i])
+            }
+        })
+
         shuffle(playersBlacklist).forEach(list=>{
             const currentPlayers = shuffle(list.players)
+            teams = teams.sort((a,b)=>a.length - b.length)
             let j = 0
             for(let i = 0; i < currentPlayers.length; i++){
                 if(j == teams.length){
@@ -65,33 +74,10 @@ export default function Main() {
             }
         })
 
-        shuffle(playersWhitelist).forEach(whitelist=>{
-            let smallestIndex = 0
-            let minLength = getLength()
-            for(let i = 0; i < teams.length; i++){
-                if(teams[i].length < minLength){
-                    smallestIndex = i
-                    minLength = teams[i].length
-                }
-            }
-            for(let i = 0; i < whitelist.players.length; i++){
-                teams[smallestIndex].push(whitelist.players[i])
-            }
-        })
-
         shuffle(players).forEach(player=>{
-            let smallestIndex = 0
-            let minLength = getLength()
-            for(let i = 0; i < teams.length; i++){
-                if(teams[i].length < minLength){
-                    smallestIndex = i
-                    minLength = teams[i].length
-                }
-            }
-            teams[smallestIndex].push(player)
+            teams = teams.sort((a,b)=>a.length - b.length)
+            teams[0].push(player)
         })
-
-        
 
         setOutput(e=>shuffle(teams.map(team=>{
             return shuffle(team)
