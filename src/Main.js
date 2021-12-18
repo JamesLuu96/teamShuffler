@@ -117,9 +117,6 @@ export default function Main() {
     }
     return (
         <Box width={"80%"} m="20px auto" textAlign={"center"}>
-            <Box position={"absolute"} width={"150px"}>
-                <Image borderRadius='full' src='https://i.imgur.com/7GKlkKp.jpg' alt='Dan Abramov' />
-            </Box>
             {getLength() > 0 && (
                 <Button size="sm" colorScheme={"red"} onClick={e=>{
                     resetAll()
@@ -129,6 +126,9 @@ export default function Main() {
             <Text fontSize={"2rem"} fontWeight={"bold"} color={"white"}>
                 Team Randomizer
             </Text>
+            <Box position={{md:"block", lg:"absolute"}} m={"0 auto"} width={"150px"}>
+                <Image borderRadius='full' src='https://i.imgur.com/7GKlkKp.jpg' alt='Dan Abramov' />
+            </Box>
             <Text color="white" m="5px">Number of Teams:</Text>
             <Button m="10px" onClick={()=>{
                 setTeamAmount(Math.max(1, teamAmount - 1))
@@ -183,7 +183,7 @@ export default function Main() {
 
 
             <Text color="white" mb="10px" borderBottom={"1px solid white"}>Total Players: <Text fontWeight={"bold"} display="inline-block">{getLength()}</Text></Text>
-            <Box display={"flex"} justifyContent="center" alignItems="center" width="60%" m="0 auto" flexWrap={"wrap"} mb="20px">
+            <Box display={"flex"} justifyContent="center" alignItems="center" width={{md:"85%", lg:"80%"}} m="0 auto" flexWrap={"wrap"} mb="20px">
                 {
                     players.map(player=>(
                         <Box width="200px" key={player.id} display="flex" alignItems={"center"} justifyContent={"center"}>
