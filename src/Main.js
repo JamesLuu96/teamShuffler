@@ -59,8 +59,10 @@ export default function Main() {
         
         shuffle(playersWhitelist).forEach(whitelist=>{
             teams = teams.sort((a,b)=>a.length - b.length)
+            const length = teams[0].length
+            const index = Math.floor(Math.random() * teams.filter(x=>x.length == length).length)
             for(let i = 0; i < whitelist.players.length; i++){
-                teams[0].push(whitelist.players[i])
+                teams[index].push(whitelist.players[i])
             }
         })
 
@@ -79,7 +81,9 @@ export default function Main() {
 
         shuffle(players).forEach(player=>{
             teams = teams.sort((a,b)=>a.length - b.length)
-            teams[0].push(player)
+            const length = teams[0].length
+            const index = Math.floor(Math.random() * teams.filter(x=>x.length == length).length)
+            teams[index].push(player)
         })
 
         setOutput(e=>shuffle(teams.map(team=>{
