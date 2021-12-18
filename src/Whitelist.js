@@ -52,7 +52,7 @@ export default function Whitelist({config}) {
             <ModalHeader>Add Whitelist filter</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-                <p>Add players who you want to stay on the same team:</p>
+                <Text>Add players who you want to stay on the same team:</Text>
                 <ul>
                     {
                         players.map(player=>(

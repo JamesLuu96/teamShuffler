@@ -55,7 +55,7 @@ export default function Blacklist({config}) {
             <ModalHeader>Add Blacklist filter</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-                <p>Add players who you don't want to be on the same team:</p>
+                <Text>Add players who you don't want to be on the same team:</Text>
                 <ul>
                     {
                         players.map(player=>(
