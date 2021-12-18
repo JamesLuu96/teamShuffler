@@ -8,7 +8,7 @@ import {DeleteIcon} from '@chakra-ui/icons'
 import './Main.css';
 
 export default function Main() {
-    const forLinh = ["Chi Huyen", "Robby", "John", "Jackson", "Thomas", "Chi Ngoc", "Anh Quan", "Anh Chuong", "Chi Thu", "Anh Trong", "Chi Linh", "Rau", "Linh", "Tram", "Alex", "James", "Yen", "Jon", "Sang", "Kim", "Bi", "Teo", "Duke(Bobo)", "Thien", "Thy"]
+    const forLinh = ["Chi Huyen", "Robby", "John", "Thomas", "Chi Ngoc", "Anh Quan", "Anh Chuong", "Chi Thu", "Anh Trong", "Chi Linh", "Rau", "Tram", "Alex", "Yen", "Jon", "Sang", "Kim", "Bi", "Teo", "Duke(Bobo)", "Thien", "Thy"]
     const [teamAmount, setTeamAmount] = useState(1)
     const [players, setPlayers] = useState([])
     const [playersWhitelist, setPlayersWhitelist] = useState([])
